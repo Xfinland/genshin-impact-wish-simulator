@@ -11,8 +11,8 @@ export default class BaseGacha {
     this.guaranteedFeatured5Star = false
     // this.standardRange = this.generateProbabilityRange(943, 51, 6)
     // 调整抽奖比例
-    this.standardRange = this.generateProbabilityRange(500, 400, 100)
-    this.softPityRange = this.generateProbabilityRange(629, 51, 320)
+    this.standardRange = this.generateProbabilityRange(300, 600, 100)
+    this.softPityRange = this.generateProbabilityRange(400, 400, 200)
     this.probabilityRange = this.standardRange
   }
   set attempts(amount) {

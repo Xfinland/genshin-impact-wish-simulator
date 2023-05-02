@@ -12,18 +12,11 @@ export default function Wish(props) {
   const { setView, is4StarItem, is5StarItem, isSingleItem } = props
   const [showImage , setShowImage] = React.useState(true)
   
-  // React.useEffect(() => {
-
-  //   setTimeout(() => {
-  //     setView('wish-results')
-  //   }, 5000);
-  // },[props])
-
-  const onload = () => {
+  React.useEffect(() => {
     setTimeout(() => {
       setView('wish-results')
-    }, 6000);
-  }
+    }, 5500);
+  }, [])
 
   const src = is4StarItem ?  fourStarClip : is5StarItem ? fiveStarClip : threeStarClip
   return (
