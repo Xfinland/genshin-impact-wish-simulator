@@ -9,7 +9,9 @@ export default class BaseGacha {
     this.softPity = false
     this.guaranteedFeatured4Star = false
     this.guaranteedFeatured5Star = false
-    this.standardRange = this.generateProbabilityRange(943, 51, 6)
+    // this.standardRange = this.generateProbabilityRange(943, 51, 6)
+    // 调整抽奖比例
+    this.standardRange = this.generateProbabilityRange(500, 400, 100)
     this.softPityRange = this.generateProbabilityRange(629, 51, 320)
     this.probabilityRange = this.standardRange
   }
@@ -48,7 +50,7 @@ export default class BaseGacha {
     return !!(Math.round(Math.random()))
   }
   generateRandomNumber(max) {
-    return Math.floor(Math.random() * max)
+    return Math.floor(Math.random() * max) 
   }
   // Takes three arguments for each star rating goes 3 4 5
   generateProbabilityRange(...args) {
@@ -67,7 +69,7 @@ export default class BaseGacha {
   }
   getRandom3StarItem() {
     const threeStarItems = this.getDrops(3)
-    return threeStarItems[this.generateRandomNumber(threeStarItems.length)]
+    return threeStarItems[this.generateRandomNumber(threeStarItems.length)] || threeStarItems[0]
   }
   getRandom4StarItem() {
     const isFeatured4StarCharacter = this.flipACoin()
@@ -85,13 +87,13 @@ export default class BaseGacha {
     if (isFeatured) {
       result = items.filter(item => item.isFeatured === true)
     } else if (rating === 4) {
-      const coinFlip = this.flipACoin()
-      const itemType = coinFlip ? 'character' : 'weapon'
+      // const coinFlip = this.flipACoin()
+      const itemType ='character'
       result = items.filter(item => item.type === itemType && !item.isFeatured)
     } else {
       result = items.filter(item => !item.isFeatured)
     }
-    return result[this.generateRandomNumber(result.length)]
+    return result[this.generateRandomNumber(result.length)] || items[0]
   }
   getGuaranteed4StarItemOrHigher() {
     // .6% chance of getting 5 star item
@@ -122,6 +124,7 @@ export default class BaseGacha {
   beforeRollOnce() {
   }
   rollOnce() {
+    // 抽奖规则
     this.beforeRollOnce()
     let rating;
     this.shuffle(this.probabilityRange)

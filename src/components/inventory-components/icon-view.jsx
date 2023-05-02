@@ -9,13 +9,13 @@ const weaponDetailsThumbs = require.context('../../assets/images/weapons')
 const backgroundElements = require.context('../../assets/images/details/character-icons')
 
 export default function IconView(props) {
-  const { name, type, rating, src, quantity } = props.item
+  const { name, type, rating, src, quantity ,element} = props.item
   const backgroundStyle = type === 'weapon'
     ? {
       backgroundImage: `url('${weaponBackground}')`
      }
     : {
-      background: `url('${backgroundElements(`./${name}-Icon.png`).default}') right / 20% no-repeat, url('${characterBackground}') no-repeat center / contain`
+      background: `url('${backgroundElements(`./${element}.png`).default}') right / 20% no-repeat, url('${characterBackground}') no-repeat center / contain`
     }
 
   return(

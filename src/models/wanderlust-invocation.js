@@ -6,6 +6,7 @@ export default class WanderlustInvocation extends BaseGacha {
     super(drops)
   }
   rollOnce() {
+    // debugger
     let rating;
     this.shuffle(this.probabilityRange)
     this.attempts = 1
@@ -37,10 +38,11 @@ export default class WanderlustInvocation extends BaseGacha {
      return this.flipForCharacterOrWeapon(5,this.drops)
   }
   flipForCharacterOrWeapon(rating,itemsList) {
-    const coinFlip = this.flipACoin()
+    // const coinFlip = this.flipACoin()
+    const coinFlip = 1
     const itemType = coinFlip ? 'character' : 'weapon'
     const result = itemsList.filter(item => item.type === itemType && item.rating === rating)
-    return result[this.generateRandomNumber(result.length)]
+    return result[this.generateRandomNumber(result.length)] || result[0]
   }
   getGuaranteed4StarItemOrHigher() {
     // .6% chance of getting 5 star item

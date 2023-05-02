@@ -52,14 +52,17 @@ module.exports = {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
+            options: {
+              limit: 100000000,
+            },
           },
         ],
       },
-      {
-        test: /\.mp4$/,
-        use: 'file-loader?name=videos/[name].[ext]',
-      }
+      // {
+      //   test: /\.mp4$/,
+      //   use: 'file-loader?name=videos/[name].[ext]',
+      // }
     ]
   }
 };

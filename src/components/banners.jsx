@@ -3,6 +3,7 @@ import BannerButton from './banner-button';
 import { Carousel } from 'react-responsive-carousel';
 import Modal from './modal';
 import Settings from './settings'
+import wanderlustInvocation from '../assets/images/banners/wanderlust-invocation.png'
 
 const banners = require.context('../assets/images/banners', true);
 export default class Banners extends Component {
@@ -10,18 +11,18 @@ export default class Banners extends Component {
     super(props)
     const selectedCharacterEventWish = this.props.getFormattedCharacterEventWish('kebabCase')
     this.state = {
-      selectedBanner: 'beginners-wish',
+      selectedBanner: 'wanderlust-invocation',
       selectedCharacterEventWish,
       banners: {
-        'beginners-wish': 'Novice Wishes',
-        [selectedCharacterEventWish]: 'Character Event Wish',
-        'epitome-invocation': 'Weapon Event Wish',
+        // 'beginners-wish': 'Novice Wishes',
+        // [selectedCharacterEventWish]: 'Character Event Wish',
+        // 'epitome-invocation': 'Weapon Event Wish',
         'wanderlust-invocation': 'Standard Wish'
       },
       wishes: {
-        'beginners-wish': 'beginnersWish',
-        [selectedCharacterEventWish]: this.props.getFormattedCharacterEventWish('camelCase', selectedCharacterEventWish),
-        'epitome-invocation': 'epitomeInvocation',
+        // 'beginners-wish': 'beginnersWish',
+        // [selectedCharacterEventWish]: this.props.getFormattedCharacterEventWish('camelCase', selectedCharacterEventWish),
+        // 'epitome-invocation': 'epitomeInvocation',
         'wanderlust-invocation': 'wanderlustInvocation'
       },
       wasBeginnersWishDisabled: false,
@@ -110,10 +111,10 @@ export default class Banners extends Component {
     } else {
       this.setState({
         banners: {
-          'beginners-wish': 'Novice Wishes',
-          [this.props.getFormattedCharacterEventWish('kebabCase')]: 'Character Event Wish',
-          'epitome-invocation': 'Weapon Event Wish',
-          'wanderlust-invocation': 'Standard Wish'
+          // 'beginners-wish': 'Novice Wishes',
+          // [this.props.getFormattedCharacterEventWish('kebabCase')]: 'Character Event Wish',
+          // 'epitome-invocation': 'Weapon Event Wish',
+          'wanderlust-invocation': '丘丘祈愿'
         },
         wishes: {
           'beginners-wish': 'beginnersWish',
@@ -165,7 +166,12 @@ export default class Banners extends Component {
           <div className="giws-banners-container">
             <div className="heading">
               <div className="current-banner">
-                <div>{this.bannerText}</div>
+                <div className={'banner-text'} style={{fontWeight:800,fontSize:50,display:'flex'}}>
+                  {this.bannerText}  
+                  <img src='丘丘人.png'  width={50} height={70} style={{marginLeft:'20px'}}/>
+                 
+                 </div>
+              
               </div>
               <div className="select-banner">
                 {
@@ -177,6 +183,7 @@ export default class Banners extends Component {
                       onClick={() => this.switchBanner(banner)}
                     />
                   ))
+                  
                 }
               </div>
               <div className="close-window"></div>
@@ -194,30 +201,30 @@ export default class Banners extends Component {
                 onChange={this.onCarouselChange.bind(this)}
               >
                 {
-                  bannerKeys.map(banner => {
-                    return (
-                      <div key={banner} className={`banner-slide ${banner}`}>
-                        <div
+                  // bannerKeys.map(banner => {
+                    // return (
+                      <div className={`banner-slide`}>
+                        {/* <div
                         title={`Your wish counter, you have wished ${userWishes[banner]} times`}
-                        className="wish-counter">{userWishes[banner]}</div>
-                        <img src={banners(`./${banner}.png`).default} />
+                        className="wish-counter">{userWishes[banner]}</div> */}
+                        <img src={wanderlustInvocation} />
                       </div>
-                    )
-                  })
+                    // )
+                  // })
                 }
               </Carousel>
             </div>
             <div className="action-container">
               <div className="button-container">
                 <button
-                  onClick={() => this.toggleSettingsModal(true)}
-                >Settings</button>
+                  // onClick={() => this.toggleSettingsModal(true)}
+                >尘辉兑换</button>
                 <button
-                  onClick={() => setView('details')}
-                >Details</button>
+                  // onClick={() => setView('details')}
+                >详情</button>
                 <button
                   onClick={() => setView('inventory')}
-                >Inventory</button>
+                >历史记录</button>
               </div>
               <div className="wish-container d-flex justify-content-center">
                 <div
@@ -225,7 +232,7 @@ export default class Banners extends Component {
                     wish(this.state.wishes[selectedBanner], true)
                   }}
                   className="wish-button"
-                >Wish</div>
+                >祈愿1次</div>
                 <div
                   className={`wish-button ${selectedBanner === 'beginners-wish' && isBeginnersWishOver10 && 'disabled'}`}
                   onClick={() => {
@@ -233,7 +240,7 @@ export default class Banners extends Component {
                     wish(this.state.wishes[selectedBanner])
                   }}
                 >
-                  Wish x10
+                 祈愿10次
               </div>
               </div>
             </div>

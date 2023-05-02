@@ -30,9 +30,11 @@ import WanderlustInvocation from '../models/wanderlust-invocation'
 import { version } from '../../package.json';
 
 
+
 export default class App extends Component {
   constructor(props) {
     super(props)
+    document.title = '丘丘百货'
     this.setView = this.setView.bind(this)
     this.setBeginnersWishDisable = this.setBeginnersWishDisable.bind(this)
     this.setBeginnersWishOver10 = this.setBeginnersWishOver10.bind(this)
@@ -66,7 +68,7 @@ export default class App extends Component {
       isBeginnersWishLimited: false,
       isBeginnersWishOver10: false,
       inventory: {},
-      wasDisclaimerSeen: false,
+      wasDisclaimerSeen: true,
       isSettingsPageVisible: false,
       currentWishes: [],
       selectedCharacterEventWish: 'moment-of-bloom-2',
@@ -401,7 +403,7 @@ export default class App extends Component {
               setView={this.setView}
               setCurrentDetails={this.setCurrentDetails.bind(this)}
               setSelectedWish={this.setSelectedWish.bind(this)}
-              selectedBanner={currentDetails}
+              selectedBanner={'wanderlust-invocation'}//{currentDetails}
               getFormattedCharacterEventWish={this.getFormattedCharacterEventWish.bind(this)}
               updateCharacterEventWish={this.updateCharacterEventWish.bind(this)}
               isBeginnersWishLimited={isBeginnersWishLimited}

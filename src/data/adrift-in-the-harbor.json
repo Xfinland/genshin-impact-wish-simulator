@@ -1,5 +1,14 @@
 [
   {
+    "name": "Keqing",
+    "element": "Electro",
+    "type": "character",
+    "rating": 4,
+    "id": "749031397896749127",
+    "src": "Keqing.png",
+    "percentX": 100
+  },
+  {
     "name": "Ganyu",
     "element": "Cryo",
     "type": "character",

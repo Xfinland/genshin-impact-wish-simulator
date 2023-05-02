@@ -6,13 +6,15 @@ import ListView from './inventory-components/list-view'
 import sadPaimon from '../assets/images/sad-paimon.png'
 import IconView from './inventory-components/icon-view';
 
+const password = 'qq'
 export default class Inventory extends Component {
   constructor(props) {
     super(props)
     this.state = {
       view: 'listView',
       orderBy: 'rating',
-      showOnly: 'all'
+      showOnly: 'all',
+      password: '',
     }
     this.onChange = this.onChange.bind(this)
   }
@@ -23,6 +25,8 @@ export default class Inventory extends Component {
     let wishes = list.reduce((acc, curr) => acc + curr.quantity, 0)
     return `$${((0.0129 * 160) * wishes).toFixed(2)}`
   }
+
+  
   render() {
     const { backToHome, inventory } = this.props
     const { orderBy, view, showOnly } = this.state
@@ -40,13 +44,25 @@ export default class Inventory extends Component {
       fourStars: item => item.rating === 4,
       threeStars: item => item.rating === 3
     }
+
     // est cost per primogen, 1600 gems per 10 wishes
     const amountSpent = this.calculateAmountSpent(inventoryList)
+    if(this.state.password !== password){
+      return <>  
+      <Navbar
+      backToHome={backToHome}
+    />
+    <div className="details pt-5 min-vh-100">
+        <Input onChange={(v) => {this.onChange({target:{name:'password' , value:v.target.value}})} }/
+    ></div>
+    </>
+    }
     return (
       <>
         <Navbar
           backToHome={backToHome}
         />
+      
         <div className="details pt-5 min-vh-100">
           <Container>
             <Title>
